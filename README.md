@@ -1,4 +1,21 @@
-# Create React Express App
+# Beacon App
+
+# Developer Notes
+## React & Express Ports
+React will run on PORT 3000 and will proxy to 3001 for Express
+If you are adding UI packages that need to run in React, cd into client folder, then npm install (Make sure you cd back to main directory before npm start or the server wont run)
+
+## Mongo Connection
+Mongoose is set up, make sure to add any new models to the index.js file in the models folder
+Mongoose will create a database called  "Beacon"
+If you want to test, use postman for a POST request and point it to localhost:3001/api/test, then add the following to the request body
+{
+  "testName": "Beacon!"
+}
+
+## Console Logging
+Please console log everything with "[<YOUR INITIALS>] <Whatever you want to console log>"
+
 
 ## About This Boilerplate
 
