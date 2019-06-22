@@ -2,7 +2,7 @@ import React from "react";
 import MapContainer from "../components/MapContainer";
 export default class Home extends React.Component {
 	state = {
-		beacon: [
+		beacons: [
             {
                 location:{
                     lat:40.748441,
@@ -17,12 +17,28 @@ export default class Home extends React.Component {
 	componentDidMount() {
     }
 
-    render(){
-        const {beacon} = this.state;
+    addBeaconClick = (e) => {
+        let newBeaconArray = this.state.beacons;
+        let latitude = e.latLng.lat()
+        let longtitude  = e.latLng.lng()
+        console.log(latitude, longtitude)
+        newBeaconArray.push({location:{lat:latitude,lon:longtitude}});
+        this.setState({
+            beacon:newBeaconArray
 
-        return beacon.length ?(
+        });
+    }
+
+
+
+    render(){
+        console.log("Render");
+        const {beacons} = this.state;
+
+        return beacons.length ?(
             <MapContainer 
-                beacons={this.state.beacon}
+                beacons={this.state.beacons}
+                mapClick = {this.addBeaconClick}
             />
             ):( <h1>Hey</h1>
 

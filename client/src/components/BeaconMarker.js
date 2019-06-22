@@ -3,15 +3,13 @@ import React from "react";
 import { Marker } from "react-google-maps";
 import partyIcon from "../assets/images/beaconParty.png";
 
-export default class BeaconMarker extends React.Component {
-
-  render(){
+function BeaconMarker(props){
     return(
         <Marker
-          position={this.props.location}
+          position={props.location}
           icon={partyIcon}
         >
         </Marker>
     );
-  }
 }
+export default BeaconMarker;
