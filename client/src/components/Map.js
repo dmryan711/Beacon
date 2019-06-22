@@ -5,14 +5,21 @@ import BeaconMarker from "./BeaconMarker";
 
 const Map = withScriptjs(withGoogleMap((props) =>{
 
-  const markers = props.beacons.map( beacon => <BeaconMarker
+  const markers = props.beacons.map( beacon => 
+                  <BeaconMarker
                     location={{lat: beacon.location.lat, lng: beacon.location.lon}}
-                  />);
+  />);
+
+  
+
+
+
                   
   return (
       <GoogleMap
         defaultZoom={14}
         center={ { lat:  40.8089897, lng: -73.9612492 } }
+        onClick={props.mapClick}
         >
         {markers}
       </GoogleMap>
