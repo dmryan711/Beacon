@@ -1,6 +1,4 @@
 import React from "react";
-
-const fetch = require("isomorphic-fetch");
 const { compose, withProps, withHandlers } = require("recompose");
 const {
   withScriptjs,
@@ -27,12 +25,16 @@ const MapWithAMarkerClusterer = compose(
       console.log(clickedMarkers)
     },
   }),
+//   withStateHandlers({
+//       onNewBeacon:()
+//   }),
   withScriptjs,
   withGoogleMap
 )(props =>
   <GoogleMap
   defaultZoom={14}
   center={ { lat:  40.8089897, lng: -73.9612492 } }
+  onClick={props.mapClick}
   >
     <MarkerClusterer
       onClick={props.onMarkerClustererClick}
@@ -40,10 +42,11 @@ const MapWithAMarkerClusterer = compose(
       enableRetinaIcons
       gridSize={60}
     >
-      {props.markers.map((marker,index) => (
+    {console.log("Rendering")}
+      {props.beacons.map((beacon,index) => (
         <Marker
           key={index}
-          position={{ lat: marker.latitude, lng: marker.longitude }}
+          position={{ lat: beacon.latitude, lng: beacon.longitude }}
         />
       ))}
     </MarkerClusterer>

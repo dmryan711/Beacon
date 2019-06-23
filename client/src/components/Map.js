@@ -26,11 +26,18 @@ const Map = withScriptjs(withGoogleMap((props) =>{
         onClick={props.mapClick}
         >
         <MarkerClusterer
-        averageCenter
-        gridSize={60}
-        
+      onClick={props.onMarkerClustererClick}
+      averageCenter
+      enableRetinaIcons
+      gridSize={60}
+    >
+      {props.beacons.map((beacon,index) => (
+        <BeaconMarker
+        location={{lat: beacon.location.lat, lng: beacon.location.lon}}
+        key = {index}
         />
-        {markers}
+      ))}
+    </MarkerClusterer>
         
       </GoogleMap>
     );
