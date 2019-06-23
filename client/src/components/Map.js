@@ -11,7 +11,7 @@ const Map = withScriptjs(withGoogleMap((props) =>{
   return (
       <GoogleMap
         defaultZoom={14}
-        center={ { lat:  40.8089897, lng: -73.9612492 } }
+        center={ { lat:  props.currentLocation.lat, lng: props.currentLocation.lon } }
         onClick={props.mapClick}
         >
         <MarkerClusterer
@@ -26,6 +26,11 @@ const Map = withScriptjs(withGoogleMap((props) =>{
         key = {index}
         />
       ))}
+      
+      <BeaconMarker
+          type = {"userLocation"}
+          location = {{lat:props.currentLocation.lat, lng:props.currentLocation.lon}}
+      />
     </MarkerClusterer>
         
       </GoogleMap>

@@ -10,11 +10,21 @@ export default class Home extends React.Component {
                 }  
             }
         ],
-		latitude: 40.8089897,
-		longitude: -73.9612492,
+        currentLocation:{
+            lat:40.748441,
+            lon:-73.985664
+        },
+        intervalId:""
 	};
 
 	componentDidMount() {
+        const intervalId = setInterval(this.getGeoLocation,5000);
+        this.setState({intervalId:intervalId});
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.state.intervalId);
+
     }
 
     addBeaconClick = (e) => {
@@ -29,6 +39,25 @@ export default class Home extends React.Component {
         });
     }
 
+
+    getGeoLocation = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                position => {
+                    console.log(position.coords);
+                    this.setState({
+                        currentLocation: {
+                            lat: position.coords.latitude,
+                            lon: position.coords.longitude
+                        }
+                    });
+                }
+            )
+        } else {
+           
+        }
+    }
+
     
 
 
@@ -36,14 +65,22 @@ export default class Home extends React.Component {
     render(){
         console.log("Render");
         const {beacons} = this.state;
-
-        return beacons.length ?(
-            <MapContainer 
-                beacons={this.state.beacons}
+        const {currentLocation} = this.state;
+        return (
+            <MapContainer
+                beacons = {this.state.beacons}
                 mapClick = {this.addBeaconClick}
+                currentLocation = {this.state.currentLocation}
             />
-            ):( <h1>Hey</h1>
-
         );
+
+        // return beacons.length && isCurrentLocationEmpty ?(
+        //     <MapContainer 
+        //         beacons={this.state.beacons}
+        //         mapClick = {this.addBeaconClick}
+        //     />
+        //     ):( <h1>Hey</h1>
+
+        // );
     }
 }

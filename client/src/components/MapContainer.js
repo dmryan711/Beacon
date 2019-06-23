@@ -17,6 +17,7 @@ function MapContainer(props){
 				containerElement={<div style={{ height: `900px`, width: `900px` }} />}
 				mapElement={<div style={{ height: `100%` }} />}
 				mapClick = {props.mapClick}
+				currentLocation = {props.currentLocation}
 			/>
 		);
 }
