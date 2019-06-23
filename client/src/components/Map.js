@@ -3,6 +3,9 @@ import React from "react";
 import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps";
 import BeaconMarker from "./BeaconMarker";
 
+const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
+
+
 const Map = withScriptjs(withGoogleMap((props) =>{
 
   const markers = props.beacons.map( (beacon,index) => 
@@ -22,7 +25,13 @@ const Map = withScriptjs(withGoogleMap((props) =>{
         center={ { lat:  40.8089897, lng: -73.9612492 } }
         onClick={props.mapClick}
         >
+        <MarkerClusterer
+        averageCenter
+        gridSize={60}
+        
+        />
         {markers}
+        
       </GoogleMap>
     );
   }
