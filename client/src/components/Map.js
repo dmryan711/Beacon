@@ -7,18 +7,7 @@ const { MarkerClusterer } = require("react-google-maps/lib/components/addons/Mar
 
 
 const Map = withScriptjs(withGoogleMap((props) =>{
-
-  const markers = props.beacons.map( (beacon,index) => 
-                  <BeaconMarker
-                    location={{lat: beacon.location.lat, lng: beacon.location.lon}}
-                    key = {index}
-  />);
-
-  
-
-
-
-                  
+                
   return (
       <GoogleMap
         defaultZoom={14}
