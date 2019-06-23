@@ -5,9 +5,10 @@ import BeaconMarker from "./BeaconMarker";
 
 const Map = withScriptjs(withGoogleMap((props) =>{
 
-  const markers = props.beacons.map( beacon => 
+  const markers = props.beacons.map( (beacon,index) => 
                   <BeaconMarker
                     location={{lat: beacon.location.lat, lng: beacon.location.lon}}
+                    key = {index}
   />);
 
   
