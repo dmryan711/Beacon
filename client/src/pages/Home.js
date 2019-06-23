@@ -2,6 +2,7 @@ import React from "react";
 import MapContainer from "../components/MapContainer";
 export default class Home extends React.Component {
 	state = {
+        
 		beacons: [
             {
                 location:{
@@ -18,7 +19,8 @@ export default class Home extends React.Component {
 	};
 
 	componentDidMount() {
-        const intervalId = setInterval(this.getGeoLocation,5000);
+        this.getGeoLocation(); //Initial location grab
+        const intervalId = setInterval(this.getGeoLocation,180000); //Every 3 minutes
         this.setState({intervalId:intervalId});
     }
 
@@ -53,9 +55,7 @@ export default class Home extends React.Component {
                     });
                 }
             )
-        } else {
-           
-        }
+        } 
     }
 
     

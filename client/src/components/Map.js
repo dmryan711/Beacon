@@ -27,11 +27,12 @@ const Map = withScriptjs(withGoogleMap((props) =>{
         />
       ))}
       
-      <BeaconMarker
+      
+    </MarkerClusterer>
+    <BeaconMarker
           type = {"userLocation"}
           location = {{lat:props.currentLocation.lat, lng:props.currentLocation.lon}}
       />
-    </MarkerClusterer>
         
       </GoogleMap>
     );
