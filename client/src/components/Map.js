@@ -7,12 +7,15 @@ const { MarkerClusterer } = require("react-google-maps/lib/components/addons/Mar
 
 
 const Map = withScriptjs(withGoogleMap((props) =>{
+
+  
                 
   return (
       <GoogleMap
         defaultZoom={14}
         center={ { lat:  props.currentLocation.lat, lng: props.currentLocation.lon } }
         onClick={props.mapClick}
+        // onDragEnd = {props.screenCenter}
         >
         <MarkerClusterer
       onClick={props.onMarkerClustererClick}
