@@ -68,6 +68,8 @@ export default class Home extends React.Component {
         console.log("Render");
         const {beacons} = this.state;
         const {currentLocation} = this.state;
+        const isCurrentLocationEmpty = !Object.keys(currentLocation).length;
+
         return (
             <MapContainer
                 beacons = {this.state.beacons}
@@ -76,12 +78,15 @@ export default class Home extends React.Component {
             />
         );
 
-        // return beacons.length && isCurrentLocationEmpty ?(
+
+
+        // return  isCurrentLocationEmpty ?(
         //     <MapContainer 
         //         beacons={this.state.beacons}
         //         mapClick = {this.addBeaconClick}
+        //         currentLocation = {this.state.currentLocation}
         //     />
-        //     ):( <h1>Hey</h1>
+        //     ):( <h1>Help Me Obi-Wan User, We need your current location, it's our only hope</h1>
 
         // );
     }
