@@ -1,5 +1,9 @@
-import React from "react";
+import React,{Component} from "react";
 import MapContainer from "../components/MapContainer";
+import { MAP } from 'react-google-maps/lib/constants';
+
+
+
 export default class Home extends React.Component {
 	state = {
         
@@ -15,8 +19,18 @@ export default class Home extends React.Component {
             lat:40.748441,
             lon:-73.985664
         },
-        intervalId:""
-	};
+        intervalId:"",
+        center: {
+            lat:40.748441,
+            lon:-73.985664
+        }
+    };
+   
+    _mapRef = null;
+
+    onMapMounted = ref => {
+        this._mapRef = ref;
+      }
 
 	componentDidMount() {
         this.getGeoLocation(); //Initial location grab
@@ -37,7 +51,6 @@ export default class Home extends React.Component {
         newBeaconArray.push({location:{lat:latitude,lon:longtitude}});
         this.setState({
             beacon:newBeaconArray
-
         });
     }
 
@@ -51,6 +64,10 @@ export default class Home extends React.Component {
                         currentLocation: {
                             lat: position.coords.latitude,
                             lon: position.coords.longitude
+                        },
+                        center:{
+                            lat: position.coords.latitude,
+                            lon: position.coords.longitude
                         }
                     });
                 }
@@ -58,23 +75,38 @@ export default class Home extends React.Component {
         } 
     }
 
-  
+  recenterMap = () => {
+     console.log("[DEBUG] onDragEnd map ref", this._mapRef)
+     console.log("[DEBUG] onDragEnd new center lng", this._mapRef.getCenter().lat())
+     console.log("[DEBUG] onDragEnd new center lat", this._mapRef.getCenter().lng())
+     this.setState({
+        center:{
+            lat: this._mapRef.getCenter().lat(),
+            lon: this._mapRef.getCenter().lng()
+        }
+     });
+  }
 
     
 
 
 
     render(){
-        console.log("Render");
+        console.log("[RENDERING] current center", this.state.center);
+        console.log("[RENDERING] map ref", this._mapRef);
         const {beacons} = this.state;
         const {currentLocation} = this.state;
         const isCurrentLocationEmpty = !Object.keys(currentLocation).length;
 
         return (
             <MapContainer
+                ref={this._mapRef}
                 beacons = {this.state.beacons}
                 mapClick = {this.addBeaconClick}
+                center = {this.state.center}
                 currentLocation = {this.state.currentLocation}
+                onDragEnd = {this.recenterMap}
+                onMapMounted = {this.onMapMounted}
             />
         );
 

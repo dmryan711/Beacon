@@ -18,6 +18,9 @@ function MapContainer(props){
 				mapElement={<div style={{ height: `100%` }} />}
 				mapClick = {props.mapClick}
 				currentLocation = {props.currentLocation}
+				onDragEnd = {props.onDragEnd}
+				onMapMounted={props.onMapMounted}
+				center = {props.center}
 			/>
 		);
 }

@@ -2,20 +2,21 @@
 import React from "react";
 import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps";
 import BeaconMarker from "./BeaconMarker";
-
+const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
 const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
 
+const Map = withScriptjs(withGoogleMap((props) => {
 
-const Map = withScriptjs(withGoogleMap((props) =>{
-
-  
-                
   return (
       <GoogleMap
+        ref={props.onMapMounted}
         defaultZoom={14}
-        center={ { lat:  props.currentLocation.lat, lng: props.currentLocation.lon } }
+        center={ { lat:  props.center.lat, lng: props.center.lon } }
         onClick={props.mapClick}
-        // onDragEnd = {props.screenCenter}
+        onDragEnd = {props.onDragEnd}
+      
+
+
         >
         <MarkerClusterer
       onClick={props.onMarkerClustererClick}
