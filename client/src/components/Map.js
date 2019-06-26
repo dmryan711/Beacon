@@ -14,6 +14,16 @@ const Map = withScriptjs(withGoogleMap((props) => {
         center={ { lat:  props.center.lat, lng: props.center.lon } }
         onClick={props.mapClick}
         onDragEnd = {props.onDragEnd}
+        defaultOptions={{
+         // these following 7 options turn certain controls off see link below
+          streetViewControl: false,
+          scaleControl: false,
+          mapTypeControl: false,
+          panControl: false,
+          zoomControl: false,
+          rotateControl: false,
+          fullscreenControl: false
+        }}
       
 
 
@@ -21,7 +31,7 @@ const Map = withScriptjs(withGoogleMap((props) => {
       <SearchBox
         ref={props.onSearchBoxMounted}
         bounds={props.bounds}
-        controlPosition={window.google.maps.ControlPosition.TOP_LEFT}
+        controlPosition={window.google.maps.ControlPosition.TOP_CENTER}
         onPlacesChanged={props.onPlacesChanged}
       >
       <input
