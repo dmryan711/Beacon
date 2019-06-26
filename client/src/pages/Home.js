@@ -2,6 +2,7 @@ import React from "react";
 import MapContainer from "../components/MapContainer";
 export default class Home extends React.Component {
 	state = {
+        
 		beacons: [
             {
                 location:{
@@ -10,11 +11,22 @@ export default class Home extends React.Component {
                 }  
             }
         ],
-		latitude: 40.8089897,
-		longitude: -73.9612492,
+        currentLocation:{
+            lat:40.748441,
+            lon:-73.985664
+        },
+        intervalId:""
 	};
 
 	componentDidMount() {
+        this.getGeoLocation(); //Initial location grab
+        const intervalId = setInterval(this.getGeoLocation,180000); //Every 3 minutes
+        this.setState({intervalId:intervalId});
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.state.intervalId);
+
     }
 
     addBeaconClick = (e) => {
@@ -29,6 +41,25 @@ export default class Home extends React.Component {
         });
     }
 
+
+    getGeoLocation = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                position => {
+                    console.log(position.coords);
+                    this.setState({
+                        currentLocation: {
+                            lat: position.coords.latitude,
+                            lon: position.coords.longitude
+                        }
+                    });
+                }
+            )
+        } 
+    }
+
+  
+
     
 
 
@@ -36,14 +67,27 @@ export default class Home extends React.Component {
     render(){
         console.log("Render");
         const {beacons} = this.state;
+        const {currentLocation} = this.state;
+        const isCurrentLocationEmpty = !Object.keys(currentLocation).length;
 
-        return beacons.length ?(
-            <MapContainer 
-                beacons={this.state.beacons}
+        return (
+            <MapContainer
+                beacons = {this.state.beacons}
                 mapClick = {this.addBeaconClick}
+                currentLocation = {this.state.currentLocation}
             />
-            ):( <h1>Hey</h1>
-
         );
+
+
+
+        // return  isCurrentLocationEmpty ?(
+        //     <MapContainer 
+        //         beacons={this.state.beacons}
+        //         mapClick = {this.addBeaconClick}
+        //         currentLocation = {this.state.currentLocation}
+        //     />
+        //     ):( <h1>Help Me Obi-Wan User, We need your current location, it's our only hope</h1>
+
+        // );
     }
 }
