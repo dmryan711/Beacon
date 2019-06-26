@@ -6,15 +6,16 @@ import userIcon from "../assets/images/currentLocation.png"
 
 function BeaconMarker(props){
   const google = window.google;
+  let image;
 
   if(props.type === "userLocation"){
-    var image = {
+     image = {
         url: userIcon,
         scaledSize: new google.maps.Size(60, 60)
     };
 
   }else{
-    var image = {
+     image = {
         url: partyIcon,
         scaledSize: new google.maps.Size(60, 60)
     };
