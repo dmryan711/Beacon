@@ -43,7 +43,7 @@ export default class Home extends React.Component {
         const bounds = this._mapRef.getBounds();
 
         places.forEach(place => {
-            console.log("place");
+            console.log(place);
           if (place.geometry.viewport) {
             bounds.union(place.geometry.viewport)
           } else {
@@ -54,9 +54,13 @@ export default class Home extends React.Component {
           position: place.geometry.location,
         }));
         const nextCenter = _.get(nextMarkers, '0.position', this.state.center);
-
+        console.log(nextCenter);
+        const updatedCenter ={
+            lat:nextCenter.lat(),
+            lon:nextCenter.lng()
+        }
         this.setState({
-          center: nextCenter
+          center: updatedCenter
         });
         // refs.map.fitBounds(bounds);
       }
