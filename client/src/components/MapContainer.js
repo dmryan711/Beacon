@@ -21,6 +21,9 @@ function MapContainer(props){
 				onDragEnd = {props.onDragEnd}
 				onMapMounted={props.onMapMounted}
 				center = {props.center}
+				onSearchBoxMounted = {props.onSearchBoxMounted}
+				bounds = {props.bounds}
+                onPlacesChanged = {props.onPlacesChanged}
 			/>
 		);
 }

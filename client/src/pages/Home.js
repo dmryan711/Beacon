@@ -1,6 +1,7 @@
 import React,{Component} from "react";
 import MapContainer from "../components/MapContainer";
 import { MAP } from 'react-google-maps/lib/constants';
+import _ from "lodash";
 
 
 
@@ -23,14 +24,58 @@ export default class Home extends React.Component {
         center: {
             lat:40.748441,
             lon:-73.985664
-        }
+        },
+        bounds: null
     };
+
+
+   
+      
+      onBoundsChanged = () => {
+        this.setState({
+          bounds: this._mapRef.getBounds(),
+          center: this._mapRef.getCenter(),
+        })
+      }
+     
+      onPlacesChanged= () => {
+        const places = this._searchRef.getPlaces();
+        const bounds = this._mapRef.getBounds();
+
+        places.forEach(place => {
+            console.log("place");
+          if (place.geometry.viewport) {
+            bounds.union(place.geometry.viewport)
+          } else {
+            bounds.extend(place.geometry.location)
+          }
+        });
+        const nextMarkers = places.map(place => ({
+          position: place.geometry.location,
+        }));
+        const nextCenter = _.get(nextMarkers, '0.position', this.state.center);
+
+        this.setState({
+          center: nextCenter
+        });
+        // refs.map.fitBounds(bounds);
+      }
+    
    
     _mapRef = null;
+    _searchRef = null;
+    _searchBounds = null;
 
     onMapMounted = ref => {
         this._mapRef = ref;
       }
+
+    onSearchBoxMounted = ref => {
+        this._searchRef = ref;
+        // if(this._mapRef){
+        //     this._searchRef.setBounds(this._mapRef.getBounds());
+        // }
+    }
 
 	componentDidMount() {
         this.getGeoLocation(); //Initial location grab
@@ -107,6 +152,9 @@ export default class Home extends React.Component {
                 currentLocation = {this.state.currentLocation}
                 onDragEnd = {this.recenterMap}
                 onMapMounted = {this.onMapMounted}
+                onSearchBoxMounted = {this.onSearchBoxMounted}
+                bounds = {this.state.bounds}
+                onPlacesChanged = {this.onPlacesChanged}
             />
         );
 
