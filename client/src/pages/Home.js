@@ -1,5 +1,6 @@
 import React from "react";
 import MapContainer from "../components/MapContainer";
+import Modal from "react-bootstrap/Modal";
 import _ from "lodash";
 
 
@@ -20,6 +21,9 @@ export default class Home extends React.Component {
             lat:40.748441,
             lon:-73.985664
         },
+
+        show: false,
+
         intervalId:"",
         center: {
             lat:40.748441,
@@ -530,7 +534,17 @@ darkModeHandler = () => {
             });
         }
 
+    // this.handleShow = this.handleShow.bind(this);
+    // this.handleClose = this.handleClose.bind(this);
 
+    handleClose = () => {
+        this.setState({ show: false });
+    }
+    
+    handleShow = () => {
+        this.setState({ show: true });
+      }
+    
 
     render(){
         console.log("[RENDERING] current center", this.state.center);
