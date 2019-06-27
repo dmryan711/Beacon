@@ -1,6 +1,5 @@
-import React,{Component} from "react";
+import React from "react";
 import MapContainer from "../components/MapContainer";
-import { MAP } from 'react-google-maps/lib/constants';
 import _ from "lodash";
 
 
