@@ -330,7 +330,7 @@ const Map = withScriptjs(withGoogleMap((props) => {
     >
       {props.beacons.map((beacon,index) => (
         <BeaconMarker
-        type = {props.activeBeacon}
+        type = {beacon.type}
         location={{lat: beacon.location.lat, lng: beacon.location.lon}}
         key = {index}
         />

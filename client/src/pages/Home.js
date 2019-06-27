@@ -13,7 +13,8 @@ export default class Home extends React.Component {
                 location:{
                     lat:40.748441,
                     lon:-73.985664
-                }  
+                },
+                type: "professional"  
             }
         ],
         currentLocation:{
@@ -99,8 +100,9 @@ export default class Home extends React.Component {
         let newBeaconArray = this.state.beacons;
         let latitude = e.latLng.lat()
         let longtitude  = e.latLng.lng()
+        let beaconType = this.state.activeBeacon
         console.log(latitude, longtitude)
-        newBeaconArray.push({location:{lat:latitude,lon:longtitude}});
+        newBeaconArray.push({location:{lat:latitude,lon:longtitude}, type:beaconType});
         this.setState({
             beacon:newBeaconArray
         });
