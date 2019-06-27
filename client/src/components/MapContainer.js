@@ -27,7 +27,11 @@ function MapContainer(props){
 				activeBeacon = {props.activeBeacon}
 				onPartyClicked = {props.onPartyClicked}
                 onSocialClicked = {props.onSocialClicked}
-                onProfessionalClicked = {props.onProfessionalClicked}
+				onProfessionalClicked = {props.onProfessionalClicked}
+				darkModeHandler = {props.darkModeHandler}
+				blueModeHandler = {props.blueModeHandler}
+				lightModeHandler = {props.lightModeHandler}
+				style = {props.style}
 			/>
 		);
 }
