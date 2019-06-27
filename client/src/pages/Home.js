@@ -13,7 +13,8 @@ export default class Home extends React.Component {
                 location:{
                     lat:40.748441,
                     lon:-73.985664
-                }  
+                },
+                type: "professional"  
             }
         ],
         currentLocation:{
@@ -25,7 +26,8 @@ export default class Home extends React.Component {
             lat:40.748441,
             lon:-73.985664
         },
-        bounds: null
+        bounds: null,
+        activeBeacon:"professional"
     };
 
 
@@ -74,6 +76,8 @@ export default class Home extends React.Component {
         this._mapRef = ref;
       }
 
+    
+
     onSearchBoxMounted = ref => {
         this._searchRef = ref;
         // if(this._mapRef){
@@ -96,8 +100,9 @@ export default class Home extends React.Component {
         let newBeaconArray = this.state.beacons;
         let latitude = e.latLng.lat()
         let longtitude  = e.latLng.lng()
+        let beaconType = this.state.activeBeacon
         console.log(latitude, longtitude)
-        newBeaconArray.push({location:{lat:latitude,lon:longtitude}});
+        newBeaconArray.push({location:{lat:latitude,lon:longtitude}, type:beaconType});
         this.setState({
             beacon:newBeaconArray
         });
@@ -136,7 +141,26 @@ export default class Home extends React.Component {
      });
   }
 
-    
+  onPartyClicked = () =>{
+      this.setState({
+          activeBeacon:"party"
+
+      });
+  }
+
+  onSocialClicked = () =>{
+    this.setState({
+        activeBeacon:"social"
+
+    });
+}
+
+onProfessionalClicked = () =>{
+    this.setState({
+        activeBeacon:"professional"
+
+    });
+}
 
 
 
@@ -159,6 +183,10 @@ export default class Home extends React.Component {
                 onSearchBoxMounted = {this.onSearchBoxMounted}
                 bounds = {this.state.bounds}
                 onPlacesChanged = {this.onPlacesChanged}
+                activeBeacon = {this.state.activeBeacon}
+                onPartyClicked = {this.onPartyClicked}
+                onSocialClicked = {this.onSocialClicked}
+                onProfessionalClicked = {this.onProfessionalClicked}
             />
         );
 

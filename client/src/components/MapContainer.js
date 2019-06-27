@@ -14,7 +14,7 @@ function MapContainer(props){
 				beacons={props.beacons}
 				googleMapURL={GOOGLE_MAPS_FULL_URL}
 				loadingElement={<div style={{ height: `100%` }} />}
-				containerElement={<div style={{ height: `900px`, width: `900px` }} />}
+				containerElement={<div style={{ height: `900px`, width: `100%` }} />}
 				mapElement={<div style={{ height: `100%` }} />}
 				mapClick = {props.mapClick}
 				currentLocation = {props.currentLocation}
@@ -23,7 +23,11 @@ function MapContainer(props){
 				center = {props.center}
 				onSearchBoxMounted = {props.onSearchBoxMounted}
 				bounds = {props.bounds}
-                onPlacesChanged = {props.onPlacesChanged}
+				onPlacesChanged = {props.onPlacesChanged}
+				activeBeacon = {props.activeBeacon}
+				onPartyClicked = {props.onPartyClicked}
+                onSocialClicked = {props.onSocialClicked}
+                onProfessionalClicked = {props.onProfessionalClicked}
 			/>
 		);
 }
