@@ -2,20 +2,24 @@
 import React from "react";
 import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps";
 import BeaconMarker from "./BeaconMarker";
-const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
-const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
+const {
+  SearchBox
+} = require("react-google-maps/lib/components/places/SearchBox");
+const {
+  MarkerClusterer
+} = require("react-google-maps/lib/components/addons/MarkerClusterer");
 
-const Map = withScriptjs(withGoogleMap((props) => {
-
-  return (
+const Map = withScriptjs(
+  withGoogleMap(props => {
+    return (
       <GoogleMap
         ref={props.onMapMounted}
         defaultZoom={14}
-        center={ { lat:  props.center.lat, lng: props.center.lon } }
+        center={{ lat: props.center.lat, lng: props.center.lon }}
         onClick={props.mapClick}
-        onDragEnd = {props.onDragEnd}
+        onDragEnd={props.onDragEnd}
         defaultOptions={{
-         // these following 7 options turn certain controls off see link below
+          // these following 7 options turn certain controls off see link below
           streetViewControl: false,
           scaleControl: false,
           mapTypeControl: false,
@@ -209,140 +213,142 @@ const Map = withScriptjs(withGoogleMap((props) => {
           //     ]
           //   }
           // ],
-          
-          styles : [
-            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
-            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
-            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+
+          styles: [
+            { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
             {
-              featureType: 'administrative.locality',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#d59563'}]
+              elementType: "labels.text.stroke",
+              stylers: [{ color: "#242f3e" }]
             },
             {
-              featureType: 'poi',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#d59563'}]
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#746855" }]
             },
             {
-              featureType: 'poi.park',
-              elementType: 'geometry',
-              stylers: [{color: '#263c3f'}]
+              featureType: "administrative.locality",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#d59563" }]
             },
             {
-              featureType: 'poi.park',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#6b9a76'}]
+              featureType: "poi",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#d59563" }]
             },
             {
-              featureType: 'road',
-              elementType: 'geometry',
-              stylers: [{color: '#38414e'}]
+              featureType: "poi.park",
+              elementType: "geometry",
+              stylers: [{ color: "#263c3f" }]
             },
             {
-              featureType: 'road',
-              elementType: 'geometry.stroke',
-              stylers: [{color: '#212a37'}]
+              featureType: "poi.park",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#6b9a76" }]
             },
             {
-              featureType: 'road',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#9ca5b3'}]
+              featureType: "road",
+              elementType: "geometry",
+              stylers: [{ color: "#38414e" }]
             },
             {
-              featureType: 'road.highway',
-              elementType: 'geometry',
-              stylers: [{color: '#746855'}]
+              featureType: "road",
+              elementType: "geometry.stroke",
+              stylers: [{ color: "#212a37" }]
             },
             {
-              featureType: 'road.highway',
-              elementType: 'geometry.stroke',
-              stylers: [{color: '#1f2835'}]
+              featureType: "road",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#9ca5b3" }]
             },
             {
-              featureType: 'road.highway',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#f3d19c'}]
+              featureType: "road.highway",
+              elementType: "geometry",
+              stylers: [{ color: "#746855" }]
             },
             {
-              featureType: 'transit',
-              elementType: 'geometry',
-              stylers: [{color: '#2f3948'}]
+              featureType: "road.highway",
+              elementType: "geometry.stroke",
+              stylers: [{ color: "#1f2835" }]
             },
             {
-              featureType: 'transit.station',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#d59563'}]
+              featureType: "road.highway",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#f3d19c" }]
             },
             {
-              featureType: 'water',
-              elementType: 'geometry',
-              stylers: [{color: '#17263c'}]
+              featureType: "transit",
+              elementType: "geometry",
+              stylers: [{ color: "#2f3948" }]
             },
             {
-              featureType: 'water',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#515c6d'}]
+              featureType: "transit.station",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#d59563" }]
             },
             {
-              featureType: 'water',
-              elementType: 'labels.text.stroke',
-              stylers: [{color: '#17263c'}]
+              featureType: "water",
+              elementType: "geometry",
+              stylers: [{ color: "#17263c" }]
+            },
+            {
+              featureType: "water",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#515c6d" }]
+            },
+            {
+              featureType: "water",
+              elementType: "labels.text.stroke",
+              stylers: [{ color: "#17263c" }]
             }
-          ]}
-        }
-        
-      
-
-
-        >
-      <SearchBox
-        ref={props.onSearchBoxMounted}
-        bounds={props.bounds}
-        controlPosition={window.google.maps.ControlPosition.TOP_CENTER}
-        onPlacesChanged={props.onPlacesChanged}
-      >
-      <input
-        type="text"
-        placeholder="Customized your placeholder"
-        style={{
-          boxSizing: `border-box`,
-          border: `1px solid transparent`,
-          width: `240px`,
-          height: `32px`,
-          marginTop: `27px`,
-          padding: `0 12px`,
-          borderRadius: `3px`,
-          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
-          fontSize: `14px`,
-          outline: `none`,
-          textOverflow: `ellipses`,
+          ]
         }}
-      />
-    </SearchBox>
+      >
+        <SearchBox
+          ref={props.onSearchBoxMounted}
+          bounds={props.bounds}
+          controlPosition={window.google.maps.ControlPosition.TOP_CENTER}
+          onPlacesChanged={props.onPlacesChanged}
+        >
+          <input
+            type="text"
+            placeholder="Customized your placeholder"
+            style={{
+              boxSizing: `border-box`,
+              border: `1px solid transparent`,
+              width: `240px`,
+              height: `32px`,
+              marginTop: `27px`,
+              padding: `0 12px`,
+              borderRadius: `3px`,
+              boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
+              fontSize: `14px`,
+              outline: `none`,
+              textOverflow: `ellipses`
+            }}
+          />
+        </SearchBox>
         <MarkerClusterer
-      onClick={props.onMarkerClustererClick}
-      averageCenter
-      enableRetinaIcons
-      gridSize={60}
-    >
-      {props.beacons.map((beacon,index) => (
+          onClick={props.onMarkerClustererClick}
+          averageCenter
+          enableRetinaIcons
+          gridSize={60}
+        >
+          {props.beacons.map((beacon, index) => (
+            <BeaconMarker
+              location={{ lat: beacon.location.lat, lng: beacon.location.lon }}
+              key={index}
+            />
+          ))}
+        </MarkerClusterer>
         <BeaconMarker
-        location={{lat: beacon.location.lat, lng: beacon.location.lon}}
-        key = {index}
+          type={"userLocation"}
+          location={{
+            lat: props.currentLocation.lat,
+            lng: props.currentLocation.lon
+          }}
         />
-      ))}
-      
-      
-    </MarkerClusterer>
-    <BeaconMarker
-          type = {"userLocation"}
-          location = {{lat:props.currentLocation.lat, lng:props.currentLocation.lon}}
-      />
-        
       </GoogleMap>
     );
-  }
-))
+  })
+);
 
 export default Map;
