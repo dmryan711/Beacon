@@ -23,7 +23,8 @@ function MapContainer(props){
 				center = {props.center}
 				onSearchBoxMounted = {props.onSearchBoxMounted}
 				bounds = {props.bounds}
-                onPlacesChanged = {props.onPlacesChanged}
+				onPlacesChanged = {props.onPlacesChanged}
+				activeBeacon = {props.activeBeacon}
 			/>
 		);
 }

@@ -25,7 +25,8 @@ export default class Home extends React.Component {
             lat:40.748441,
             lon:-73.985664
         },
-        bounds: null
+        bounds: null,
+        activeBeacon:"professional"
     };
 
 
@@ -159,6 +160,7 @@ export default class Home extends React.Component {
                 onSearchBoxMounted = {this.onSearchBoxMounted}
                 bounds = {this.state.bounds}
                 onPlacesChanged = {this.onPlacesChanged}
+                activeBeacon = {this.state.activeBeacon}
             />
         );
 
