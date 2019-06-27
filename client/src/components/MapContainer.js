@@ -25,6 +25,9 @@ function MapContainer(props){
 				bounds = {props.bounds}
 				onPlacesChanged = {props.onPlacesChanged}
 				activeBeacon = {props.activeBeacon}
+				onPartyClicked = {props.onPartyClicked}
+                onSocialClicked = {props.onSocialClicked}
+                onProfessionalClicked = {props.onProfessionalClicked}
 			/>
 		);
 }

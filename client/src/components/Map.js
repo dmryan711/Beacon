@@ -2,8 +2,10 @@
 import React from "react";
 import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps";
 import BeaconMarker from "./BeaconMarker";
+import MapControl from "./MapControl";
 const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
 const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
+
 
 const Map = withScriptjs(withGoogleMap((props) => {
 
@@ -339,6 +341,13 @@ const Map = withScriptjs(withGoogleMap((props) => {
     <BeaconMarker
           type = {"userLocation"}
           location = {{lat:props.currentLocation.lat, lng:props.currentLocation.lon}}
+      />
+      <MapControl
+      professionalHandler = {props.onProfessionalClicked}
+      partyHandler = {props.onPartyClicked}
+      socialHandler = {props.onSocialClicked}
+     
+      
       />
         
       </GoogleMap>

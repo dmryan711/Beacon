@@ -75,6 +75,8 @@ export default class Home extends React.Component {
         this._mapRef = ref;
       }
 
+    
+
     onSearchBoxMounted = ref => {
         this._searchRef = ref;
         // if(this._mapRef){
@@ -137,7 +139,26 @@ export default class Home extends React.Component {
      });
   }
 
-    
+  onPartyClicked = () =>{
+      this.setState({
+          activeBeacon:"party"
+
+      });
+  }
+
+  onSocialClicked = () =>{
+    this.setState({
+        activeBeacon:"social"
+
+    });
+}
+
+onProfessionalClicked = () =>{
+    this.setState({
+        activeBeacon:"professional"
+
+    });
+}
 
 
 
@@ -161,6 +182,9 @@ export default class Home extends React.Component {
                 bounds = {this.state.bounds}
                 onPlacesChanged = {this.onPlacesChanged}
                 activeBeacon = {this.state.activeBeacon}
+                onPartyClicked = {this.onPartyClicked}
+                onSocialClicked = {this.onSocialClicked}
+                onProfessionalClicked = {this.onProfessionalClicked}
             />
         );
 
