@@ -3,7 +3,7 @@
 import React from "react";
 import Map from "./Map";
 
-function MapContainer(props){
+function MapContainer(props) {
 	console.log("Map Container");
 		const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 		const GOOGLE_URL_BASE = "https://maps.googleapis.com/maps/api/js?key=";
