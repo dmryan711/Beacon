@@ -1,6 +1,5 @@
-import React,{Component} from "react";
+import React from "react";
 import MapContainer from "../components/MapContainer";
-import { MAP } from 'react-google-maps/lib/constants';
 import _ from "lodash";
 
 
@@ -21,13 +20,16 @@ export default class Home extends React.Component {
             lat:40.748441,
             lon:-73.985664
         },
+
+        show: false,
+
         intervalId:"",
         center: {
             lat:40.748441,
             lon:-73.985664
         },
         bounds: null,
-        activeBeacon:"professional",
+        // activeBeacon:"professional",
         mapStyle: [
             {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
             {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
@@ -151,6 +153,8 @@ export default class Home extends React.Component {
     _mapRef = null;
     _searchRef = null;
     _searchBounds = null;
+    _tempBeaconLocationLat = null;
+    _tempBeaconLocationLng = null;
 
     onMapMounted = ref => {
         this._mapRef = ref;
@@ -177,15 +181,52 @@ export default class Home extends React.Component {
     }
 
     addBeaconClick = (e) => {
+        this._tempBeaconLocationLat = e.latLng.lat();
+        this._tempBeaconLocationLng = e.latLng.lng();
+        
+        this.handleShow();
+
+    }
+
+    dropBeaconAndSave = (e) =>{
+        
+        e.preventDefault();
+        const data = new FormData(e.target);
+
+        let beaconName = data.get("beaconName");
+        let beaconMonth = data.get("beaconMonth")
+        let beaconDay = data.get("beaconDay")
+        let beaconYear = data.get("beaconYear")
+        let beaconHour = data.get("beaconHour")
+
+        let beaconMin = data.get("beaconMinute")
+        let beaconAMPM = data.get("beaconAMPM")
+        let type = data.get("beaconType")
+        
+
+
         let newBeaconArray = this.state.beacons;
-        let latitude = e.latLng.lat()
-        let longtitude  = e.latLng.lng()
-        let beaconType = this.state.activeBeacon
-        console.log(latitude, longtitude)
-        newBeaconArray.push({location:{lat:latitude,lon:longtitude}, type:beaconType});
+        
+        newBeaconArray.push(
+            {
+                location:{
+                    lat:this._tempBeaconLocationLat,
+                    lon:this._tempBeaconLocationLng
+                }, 
+                type:type,
+                name:beaconName,
+                month:beaconMonth,
+                day: beaconDay,
+                year:beaconYear,
+                hour:beaconHour,
+                min:beaconMin,
+                amPM:beaconAMPM
+            });
         this.setState({
             beacon:newBeaconArray
         });
+        this.handleClose();
+
     }
 
 
@@ -531,7 +572,18 @@ darkModeHandler = () => {
             });
         }
 
+    
 
+    handleClose = () => {
+        this.setState({ show: false });
+        this._tempBeaconLocationLat = null;
+        this._tempBeaconLocationLng = null;
+    }
+    
+    handleShow = () => {
+        this.setState({ show: true });
+      }
+    
 
     render(){
         console.log("[RENDERING] current center", this.state.center);
@@ -552,7 +604,7 @@ darkModeHandler = () => {
                 onSearchBoxMounted = {this.onSearchBoxMounted}
                 bounds = {this.state.bounds}
                 onPlacesChanged = {this.onPlacesChanged}
-                activeBeacon = {this.state.activeBeacon}
+                // activeBeacon = {this.state.activeBeacon}
                 onPartyClicked = {this.onPartyClicked}
                 onSocialClicked = {this.onSocialClicked}
                 onProfessionalClicked = {this.onProfessionalClicked}
@@ -560,6 +612,9 @@ darkModeHandler = () => {
                 blueModeHandler = {this.blueModeHandler}
                 darkModeHandler = {this.darkModeHandler}
                 lightModeHandler = {this.lightModeHandler}
+                show = {this.state.show}
+                handleClose = {this.handleClose}
+                submitBeacon = {this.dropBeaconAndSave}
             />
         );
 
