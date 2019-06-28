@@ -24,7 +24,7 @@ function MapContainer(props){
 				onSearchBoxMounted = {props.onSearchBoxMounted}
 				bounds = {props.bounds}
 				onPlacesChanged = {props.onPlacesChanged}
-				activeBeacon = {props.activeBeacon}
+				// activeBeacon = {props.activeBeacon}
 				onPartyClicked = {props.onPartyClicked}
                 onSocialClicked = {props.onSocialClicked}
 				onProfessionalClicked = {props.onProfessionalClicked}
@@ -32,6 +32,9 @@ function MapContainer(props){
 				blueModeHandler = {props.blueModeHandler}
 				lightModeHandler = {props.lightModeHandler}
 				style = {props.style}
+				show = {props.show}
+				  handleClose = {props.handleClose}
+				  submitBeacon = {props.submitBeacon}
 			/>
 		);
 }

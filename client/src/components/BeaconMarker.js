@@ -16,17 +16,17 @@ function BeaconMarker(props){
         scaledSize: new google.maps.Size(45, 60)
     };
 
-    }else if(props.type === "party"){
+    }else if(props.type === "Party"){
         image = {
             url: partyIcon,
             scaledSize: new google.maps.Size(45, 60)
         };  
-    }else if(props.type === "professional"){
+    }else if(props.type === "Professional"){
         image = {
             url: professionalIcon,
             scaledSize: new google.maps.Size(45, 60)
         };  
-    }else if(props.type === "social"){
+    }else if(props.type === "Social"){
         image = {
             url: socialIcon,
             scaledSize: new google.maps.Size(45, 60)
