@@ -1,6 +1,7 @@
+// MapContainer.js
+
 import React from "react";
 import Map from "./Map";
-
 
 function MapContainer(props){
 	console.log("Map Container");
