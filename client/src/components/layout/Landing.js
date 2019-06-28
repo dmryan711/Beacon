@@ -2,9 +2,12 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 class Landing extends Component {
   render() {
+    // window.location.reload();
     return (
       <div
-        style={{ height: "75vh", background: "../../assets/images/red.png" }}
+        style={{
+          height: "80vh"
+        }}
         className="container valign-wrapper"
       >
         <div className="row">

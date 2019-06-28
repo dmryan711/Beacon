@@ -188,20 +188,20 @@ export default class Home extends React.Component {
         </Provider>
       );
     } else {
-      return (
-        <MapContainer
-          ref={this._mapRef}
-          beacons={this.state.beacons}
-          mapClick={this.addBeaconClick}
-          center={this.state.center}
-          currentLocation={this.state.currentLocation}
-          onDragEnd={this.recenterMap}
-          onMapMounted={this.onMapMounted}
-          onSearchBoxMounted={this.onSearchBoxMounted}
-          bounds={this.state.bounds}
-          onPlacesChanged={this.onPlacesChanged}
-        />
-      );
+      // return (
+      //   <MapContainer
+      //     ref={this._mapRef}
+      //     beacons={this.state.beacons}
+      //     mapClick={this.addBeaconClick}
+      //     center={this.state.center}
+      //     currentLocation={this.state.currentLocation}
+      //     onDragEnd={this.recenterMap}
+      //     onMapMounted={this.onMapMounted}
+      //     onSearchBoxMounted={this.onSearchBoxMounted}
+      //     bounds={this.state.bounds}
+      //     onPlacesChanged={this.onPlacesChanged}
+      //   />
+      // );
     }
 
     // return  isCurrentLocationEmpty ?(
