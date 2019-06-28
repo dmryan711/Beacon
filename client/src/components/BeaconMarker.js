@@ -79,6 +79,17 @@ function BeaconMarker(props) {
     };
   }
 
-  return <Marker position={props.location} icon={image} />;
+
+ 
+  
+
+    return(
+        <Marker
+          position={props.location}
+          icon={image}
+        >
+        </Marker>
+    );
+
 }
 export default BeaconMarker;

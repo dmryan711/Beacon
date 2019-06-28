@@ -31,6 +31,7 @@ if (localStorage.jwtToken) {
     store.dispatch(logoutUser());
     // Redirect to login
     window.location.href = "./login";
+
   }
 }
 
@@ -214,4 +215,5 @@ export default class Home extends React.Component {
 
     // );
   }
+
 }
