@@ -4,7 +4,7 @@ import _ from "lodash";
 
 
 
-export default class Home extends React.Component {
+export default class Home extends React.Component  {
 	state = {
         
 		beacons: [
@@ -157,7 +157,10 @@ export default class Home extends React.Component {
     _tempBeaconLocationLng = null;
 
     onMapMounted = ref => {
+
         this._mapRef = ref;
+        this.getGeoLocation(); //Initial location grab
+
       }
 
     
