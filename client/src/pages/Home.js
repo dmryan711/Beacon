@@ -157,7 +157,10 @@ export default class Home extends React.Component  {
     _tempBeaconLocationLng = null;
 
     onMapMounted = ref => {
+
         this._mapRef = ref;
+        this.getGeoLocation(); //Initial location grab
+
       }
 
     
